@@ -1,55 +1,55 @@
-# Onboarding-сесія — шаблон (Етап 1: dogfooding на собі)
+# Onboarding-session template (Etap 1: dogfooding on ourselves)
 
-Статус: перша версія, перевірена на одному реальному прогоні ([`gtm-agent`](../sessions/2026-07-20-gtm-agent.md)). Ще не перевірена на модулі з іншою формою (не-CLI, інфра-модуль) — очікуй правок після наступних прогонів.
+Status: first version, verified on one real run ([`gtm-agent`](../sessions/2026-07-20-gtm-agent.md)). Not yet verified on a differently-shaped module (non-CLI, infra module) — expect revisions after further runs.
 
-Аудиторія цієї версії: Bob сам собі ("команда" = 1 людина). Шаблон навмисно прив'язаний до реальної форми модулів каталогу (Python CLI-пакет, `README.md` + `docs/architecture.md` + `docs/demo-ready-criteria.md`, `.env.example`, `pytest`) — Етап 2 адаптує його під персонал клієнта, що не читає код.
+Audience for this version: Bob, on himself ("team" = 1 person). The template is deliberately tied to the real shape of catalog modules (Python CLI package, `README.md` + `docs/architecture.md` + `docs/demo-ready-criteria.md`, `.env.example`, `pytest`) — Etap 2 will adapt it for client staff who don't read code.
 
-## Коли застосовний
+## When it applies
 
-Модуль має пройти onboarding-сесію, коли в нього з'явився **реальний матеріал**: код, що запускається, і хоча б один зафіксований architecture/demo-ready документ. Модуль зі статусом "pushed to GitHub" (голий скелет, без коду) — ще не готовий; сесія по ньому буде порожньою вправою.
+A module should go through an onboarding session once it has **real material**: runnable code, and at least one committed architecture/demo-ready document. A module with "pushed to GitHub" status (bare skeleton, no code) isn't ready yet — a session on it would be an empty exercise.
 
-## Матеріали (зібрати до сесії)
+## Materials (gather before the session)
 
-- `<module>/README.md` — швидкий старт, поточний статус
-- `<module>/docs/architecture.md` (якщо є) — зафіксовані рішення й чому
-- `<module>/docs/demo-ready-criteria.md` (якщо є) — що саме означає "модуль демонструється клієнту"
-- `<module>/.env.example` — які секрети/акаунти потрібні для реального запуску
-- Тестовий набір (`pytest tests/` або еквівалент) — щоб перевірити, що встановлення взагалі working, не покладаючись на живі зовнішні акаунти
-- Приклад вхідних даних, якщо модуль їх споживає (наприклад `data/leads.example.csv` у gtm-agent)
+- `<module>/README.md` — quick start, current status
+- `<module>/docs/architecture.md` (if it exists) — decisions locked in and why
+- `<module>/docs/demo-ready-criteria.md` (if it exists) — what "demoable to a client" actually means
+- `<module>/.env.example` — which secrets/accounts are needed for a real run
+- A test suite (`pytest tests/` or equivalent) — to verify the install actually works without relying on live external accounts
+- Sample input data, if the module consumes any (e.g. `data/leads.example.csv` in gtm-agent)
 
-## Структура сесії (орієнтир: 90–120 хв, один модуль за раз)
+## Session structure (target: 90–120 min, one module at a time)
 
-| # | Фаза | Тривалість | Мета | Матеріал |
+| # | Phase | Duration | Goal | Material |
 |---|---|---|---|---|
-| 1 | Контекст і навіщо | 5–10 хв | Яку проблему модуль вирішує, де він у каталозі (номер, залежності від інших модулів) | `README.md`, вступний абзац |
-| 2 | Архітектурні рішення | 15–20 хв | Пройти зафіксовані рішення й **чому** саме так (не тільки що) | `docs/architecture.md` |
-| 3 | Встановлення й конфігурація | 20–30 хв | Встановити залежності, заповнити `.env`, запустити тестовий набір локально | `.env.example`, `pytest` |
-| 4 | Керований прогін | 30–45 хв | Пройти реальний (або приклад) робочий процес end-to-end, крок за кроком, з голосовим коментарем що і навіщо відбувається на кожному кроці | приклад-дані, CLI/UI модуля |
-| 5 | Запобіжники й межі | 10–15 хв | Що модуль **відмовляється** робити і чому (напр. gtm-agent відмовляється драфтити без `LegitimateInterestRecord`), де саме потрібне ручне підтвердження людини | `docs/architecture.md` §guardrails, код enforcement-перевірок |
-| 6 | Перевірка готовності | 10 хв | Чи може той, хто пройшов сесію, самостійно запустити основний робочий процес і знає, коли зупинитись і запитати | контрольний список нижче |
+| 1 | Context and why | 5–10 min | What problem the module solves, where it sits in the catalog (number, dependencies on other modules) | `README.md`, intro paragraph |
+| 2 | Architecture decisions | 15–20 min | Walk through the decisions locked in and **why** (not just what) | `docs/architecture.md` |
+| 3 | Install and configuration | 20–30 min | Install dependencies, fill in `.env`, run the test suite locally | `.env.example`, `pytest` |
+| 4 | Guided run-through | 30–45 min | Walk a real (or sample) workflow end-to-end, step by step, narrating what's happening and why at each step | sample data, the module's CLI/UI |
+| 5 | Guardrails and limits | 10–15 min | What the module **refuses** to do and why (e.g. gtm-agent refuses to draft without a `LegitimateInterestRecord`), where a human must explicitly approve | `docs/architecture.md` §guardrails, the enforcement-check code |
+| 6 | Readiness check | 10 min | Can the person who went through the session run the main workflow independently, and do they know when to stop and ask | checklist below |
 
-Модулі без CLI (інфра, чиста документація, RAG-пайплайн без окремого фронтенду) можуть стискати фази 3–4 в один блок «показати живий приклад» — довжина сесії залежить від складності модуля, не фіксована жорстко.
+Modules without a CLI (infra, pure documentation, a RAG pipeline with no separate frontend) can collapse phases 3–4 into one "walk through a live example" block — session length depends on module complexity, not a fixed rule.
 
-## Контрольний список готовності (фаза 6)
+## Readiness checklist (phase 6)
 
-Пройдений, якщо на кожен пункт відповідь — так:
-- [ ] Можу самостійно встановити модуль з нуля за `README.md`, без підказок
-- [ ] Можу назвати 2–3 архітектурних рішення і чому саме так, а не інакше
-- [ ] Пройшов основний робочий процес хоча б один раз (реальний або приклад-дані)
-- [ ] Знаю, які дії система робить автоматично, а які вимагають мого явного підтвердження
-- [ ] Знаю, до кого/куди йти, якщо щось зламалось (issue в репо модуля, `STATE.md`)
+Passed if every item is a yes:
+- [ ] Can install the module from scratch using `README.md` alone, with no hints
+- [ ] Can name 2–3 architecture decisions and why, not just what
+- [ ] Went through the main workflow at least once (real or sample data)
+- [ ] Knows which actions the system takes automatically and which need explicit approval
+- [ ] Knows who/where to go if something breaks (the module's repo issues, `STATE.md`)
 
-## Запис сесії
+## Session record
 
-Кожен прогін документується окремим файлом у `sessions/YYYY-MM-DD-<module>.md`: що пройшли, що спрацювало, де сесія вперлась у зовнішній блокер (напр. відсутній акаунт), які прогалини в документації модуля виявились під час навчання. Це і є dogfooding-цикл: прогалини, знайдені під час onboarding-сесії, стають issue/правками в самому модулі, а не тільки нотаткою тут.
+Each run is documented as its own file in `sessions/YYYY-MM-DD-<module>.md`: what was covered, what worked, where the session hit an external blocker (e.g. a missing account), what documentation gaps surfaced during training. That's the dogfooding loop: gaps found during an onboarding session become issues/fixes in the module itself, not just a note here.
 
-## Що зміниться в Етапі 2 (не робити зараз)
+## What changes in Etap 2 (not now)
 
-Стандартизований пакет для персоналу клієнта:
-- Фаза 2 спрощується — персонал клієнта не читає `architecture.md` дослівно, потрібен переклад рішень у "що це означає для вас" мовою бізнесу
-- Фаза 3 замінюється на "модуль вже встановлений і сконфігурований" — клієнт не встановлює з нуля
-- Додається відео/скрінкаст поверх керованого прогону (фаза 4), а не лише текстовий гайд
-- Контрольний список фази 6 стає формальним sign-off, а не самоперевіркою
-- Одна сесія на клієнта може охоплювати декілька модулів залежно від того, що клієнт купив
+Standardized package for client staff:
+- Phase 2 simplifies — client staff don't read `architecture.md` verbatim; decisions need translating into "what this means for you" business language
+- Phase 3 becomes "the module is already installed and configured" — the client doesn't install from scratch
+- Video/screencast gets added on top of the guided run-through (phase 4), not just a text guide
+- The phase-6 checklist becomes a formal sign-off, not a self-check
+- One client session can cover several modules depending on what they bought
 
-Не починати Етап 2 доти, доки не буде ≥2–3 реальних прогонів шаблону на різних за формою модулях (наразі є 1 — CLI-модуль).
+Don't start Etap 2 until there are ≥2–3 real template runs across differently-shaped modules (currently 1 — a CLI module).

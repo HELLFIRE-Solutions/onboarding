@@ -1,14 +1,14 @@
 # HELLFIRE AI Solutions — Onboarding / Training
 
-Модуль 8. Документування процесу навчання власної "команди" (наразі Bob) користуватись кожним модулем; формування шаблону onboarding-сесії (структура, тривалість, матеріали).
+Module 8. Documents the process of training our own "team" (currently Bob) to use each module; forms a reusable onboarding-session template (structure, duration, materials).
 
-**Dogfooding → шаблон:** стандартизований onboarding-пакет (сесії + документація + відео/гайди) для навчання персоналу клієнта. Платний окремий пункт каталогу, не безкоштовний етап впровадження.
+**Dogfooding → template:** a standardized onboarding package (sessions + documentation + video/guides) for training client staff. A separate paid catalog item, not a free step in implementation.
 
-## Структура
+## Structure
 
-- [`docs/session-template.md`](docs/session-template.md) — шаблон onboarding-сесії (6 фаз, 90–120 хв, матеріали, контрольний список готовності). Перша версія, перевірена на одному реальному прогоні.
-- `sessions/` — записи реальних прогонів шаблону на кожному модулі, по мірі появи в них реального матеріалу. Наразі: [`2026-07-20-gtm-agent.md`](sessions/2026-07-20-gtm-agent.md).
+- [`docs/session-template.md`](docs/session-template.md) — onboarding-session template (6 phases, 90–120 min, materials, readiness checklist). First version, verified on one real run.
+- `sessions/` — records of real template runs against each module, as they get real material. So far: [`2026-07-20-gtm-agent.md`](sessions/2026-07-20-gtm-agent.md).
 
-**Статус:** Етап 1 у процесі (2026-07-20) — шаблон сесії створений і перевірений на модулі 05 (gtm-agent), єдиному з реальним матеріалом на цю дату. Модулі 06–11 — пушені скелети без коду, шаблон на них ще не прогонявся; повертатись по мірі того, як вони набувають реального матеріалу. Етап 2 (стандартизований пакет для персоналу клієнта) не розпочато — чекає на ≥2–3 прогони шаблону на різних за формою модулях.
+**Status:** Etap 1 in progress (2026-07-20) — session template built and verified on module 05 (gtm-agent), the only module with real material as of this date. Modules 06–11 are pushed skeletons with no code yet; the template hasn't been run against them — will return as they get real material. Etap 2 (standardized package for client staff) not started — waits on ≥2–3 template runs across differently-shaped modules.
 
-**Ліцензія:** MIT.
+**License:** MIT.
