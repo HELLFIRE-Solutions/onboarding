@@ -1,8 +1,8 @@
-# Onboarding-session template (Etap 1: dogfooding on ourselves)
+# Onboarding-session template (Stage 1: dogfooding on ourselves)
 
-Status: third version, verified on three real runs across three different shapes: [`gtm-agent`](../sessions/2026-07-20-gtm-agent.md) (CLI module, external-account-blocked), [`compliance-layer`](../sessions/2026-07-24-compliance-layer.md) (documentation-only module — no code, no CLI), and [`rag-01`](../sessions/2026-07-25-rag-01.md) (infra/pipeline module — CLI present but structurally dependent on an external DB, no `docs/` folder at all). The 6 phases as categories have held on all three runs; only phase-level assumptions needed adjusting each time. Per the template's own threshold (≥2–3 differently-shaped runs before Etap 2), this is now considered stable enough to start Etap 2 — see `STATE.md` session 12.
+Status: third version, verified on three real runs across three different shapes: [`gtm-agent`](../sessions/2026-07-20-gtm-agent.md) (CLI module, external-account-blocked), [`compliance-layer`](../sessions/2026-07-24-compliance-layer.md) (documentation-only module — no code, no CLI), and [`rag-01`](../sessions/2026-07-25-rag-01.md) (infra/pipeline module — CLI present but structurally dependent on an external DB, no `docs/` folder at all). The 6 phases as categories have held on all three runs; only phase-level assumptions needed adjusting each time. Per the template's own threshold (≥2–3 differently-shaped runs before Stage 2), this is now considered stable enough to start Stage 2 — see `STATE.md` session 12.
 
-Audience for this version: Bob, on himself ("team" = 1 person). The template is deliberately tied to the real shape of catalog modules (Python CLI package, `README.md` + `docs/architecture.md` + `docs/demo-ready-criteria.md`, `.env.example`, `pytest`) — Etap 2 will adapt it for client staff who don't read code.
+Audience for this version: Bob, on himself ("team" = 1 person). The template is deliberately tied to the real shape of catalog modules (Python CLI package, `README.md` + `docs/architecture.md` + `docs/demo-ready-criteria.md`, `.env.example`, `pytest`) — Stage 2 will adapt it for client staff who don't read code.
 
 ## When it applies
 
@@ -12,7 +12,7 @@ A module should go through an onboarding session once it has **real material**: 
 
 - `<module>/README.md` — quick start, current status
 - `<module>/docs/architecture.md` (if it exists) — decisions locked in and why. Documentation-only modules may not have a file with this exact name; look for whatever plays the equivalent role (e.g. compliance-layer's `docs/standard.md` plus its sub-docs) and expect the "decisions" material to be spread across more than one file. **A third variant exists**: some modules have no `docs/` folder at all (rag-01) — the decisions live directly in `README.md`. Don't treat a missing `docs/` directory as a gap by itself; check whether `README.md` is carrying that content before flagging anything.
-- `<module>/docs/demo-ready-criteria.md` (if it exists) — what "demoable to a client" actually means. Not every module has one (compliance-layer doesn't — its own "what Etap 1 deliberately does not do" section serves a similar scoping purpose; rag-01 doesn't either — its README's "dogfooding results" section is a retrospective record, not a forward checklist, and that's fine)
+- `<module>/docs/demo-ready-criteria.md` (if it exists) — what "demoable to a client" actually means. Not every module has one (compliance-layer doesn't — its own "what Stage 1 deliberately does not do" section serves a similar scoping purpose; rag-01 doesn't either — its README's "dogfooding results" section is a retrospective record, not a forward checklist, and that's fine)
 - `<module>/.env.example` — which secrets/accounts are needed for a real run. **Only applicable if the module has a runtime.** Doc-only modules have nothing here — don't treat its absence as a gap
 - A test suite (`pytest tests/` or equivalent) — to verify the install actually works without relying on live external accounts. Same caveat: N/A for doc-only modules. **Check what the tests actually cover before trusting a green run as proof of the whole workflow** — a module can have a fully external-dependency-free test suite (gtm-agent mocks the Claude API and its CLI runs end-to-end without it) or one that only covers a code path the real CLI doesn't use in production (rag-01's tests exercise `LocalVectorStore`, but the shipped CLI hard-requires `PgVectorStore`/Postgres with no dev fallback) — these look identical from "tests pass" alone but mean different things for phase 3/4.
 - Sample input data, if the module consumes any (e.g. `data/leads.example.csv` in gtm-agent). For a module whose CLI needs external infra to run at all, also check for a bundled offline eval/demo script (e.g. `eval/dogfood_stage1.py` in rag-01) — that, not the CLI, may be the actual runnable material for phase 4.
@@ -45,7 +45,7 @@ Passed if every item is a yes. Items marked **(CLI)** apply to modules with a ru
 
 Each run is documented as its own file in `sessions/YYYY-MM-DD-<module>.md`: what was covered, what worked, where the session hit an external blocker (e.g. a missing account), what documentation gaps surfaced during training. That's the dogfooding loop: gaps found during an onboarding session become issues/fixes in the module itself, not just a note here.
 
-## What changes in Etap 2 (not now)
+## What changes in Stage 2 (not now)
 
 Standardized package for client staff:
 - Phase 2 simplifies — client staff don't read `architecture.md` verbatim; decisions need translating into "what this means for you" business language
@@ -54,4 +54,4 @@ Standardized package for client staff:
 - The phase-6 checklist becomes a formal sign-off, not a self-check
 - One client session can cover several modules depending on what they bought
 
-Threshold was ≥2–3 real template runs across differently-shaped modules before starting Etap 2. Now at 3 — CLI module (gtm-agent), documentation-only module (compliance-layer), infra/DB-dependent module (rag-01) — each run found only phase-level adjustments, never a category-level failure. Per `STATE.md` session 12, the template is now considered stable enough to begin Etap 2 planning.
+Threshold was ≥2–3 real template runs across differently-shaped modules before starting Stage 2. Now at 3 — CLI module (gtm-agent), documentation-only module (compliance-layer), infra/DB-dependent module (rag-01) — each run found only phase-level adjustments, never a category-level failure. Per `STATE.md` session 12, the template is now considered stable enough to begin Stage 2 planning.

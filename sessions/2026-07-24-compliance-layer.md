@@ -1,4 +1,4 @@
-# Onboarding session: compliance-layer (module 11), Etap 1
+# Onboarding session: compliance-layer (module 11), Stage 1
 
 Date: 2026-07-24. Format: [session-template.md](../docs/session-template.md), second real run of the template — first against a **non-CLI module**.
 Trainee: Bob (dogfooding on himself).
@@ -9,7 +9,7 @@ compliance-layer (11) is pure documentation: one `docs/standard.md` plus three s
 
 ## Phase 1 — Context and why (done, no change needed)
 
-Module 11: documents HELLFIRE's own compliance approach (legitimate interest, data residency, AI Act risk classification) as an internal standard, built on TETA+PI's TWIRA methodology. Entry ticket to the German market — same framing as the original project plan. Etap 1 = internal standard; Etap 2 (sellable audit product) not started. This phase worked exactly as written; module shape didn't matter here.
+Module 11: documents HELLFIRE's own compliance approach (legitimate interest, data residency, AI Act risk classification) as an internal standard, built on TETA+PI's TWIRA methodology. Entry ticket to the German market — same framing as the original project plan. Stage 1 = internal standard; Stage 2 (sellable audit product) not started. This phase worked exactly as written; module shape didn't matter here.
 
 ## Phase 2 — Architecture decisions (done, took longer than the template budgets)
 
@@ -35,7 +35,7 @@ Both scenarios were answerable directly from the docs with no ambiguity — the 
 ## Phase 5 — Guardrails and limits (done, template held as-is)
 
 Explicit non-goals and scope limits are unusually clear for this module (arguably clearer than a CLI module's guardrails, since there's no code to infer them from — they have to be written down):
-- No audit/questionnaire product yet (that's Etap 2), no changes to gtm-agent's code/schema, no legal sign-off — these are HELLFIRE's internal working interpretation, not legal advice.
+- No audit/questionnaire product yet (that's Stage 2), no changes to gtm-agent's code/schema, no legal sign-off — these are HELLFIRE's internal working interpretation, not legal advice.
 - Explicit "do not resolve this by picking whichever answer is more convenient" flag on the Art. 50 transparency question for gtm-agent — a genuinely open item routed to real counsel rather than quietly assumed.
 - Non-goal inherited HELLFIRE-wide: no automated scraping/messaging on platforms whose ToS prohibits it.
 
@@ -48,7 +48,7 @@ Template wording ("install from scratch," "ran the main workflow") doesn't map c
 - [x] Can locate and summarize what each of the four docs covers without re-reading them cold
 - [x] Can name the three components and why each exists (not just what)
 - [x] Can trace a new scenario (new SaaS vendor, new module's risk tier) through the docs to the right answer
-- [x] Knows what's explicitly *not* done yet (Etap 2 audit product, legal sign-off) and wouldn't mistake this for a finished client-facing deliverable
+- [x] Knows what's explicitly *not* done yet (Stage 2 audit product, legal sign-off) and wouldn't mistake this for a finished client-facing deliverable
 - [x] Knows where to go on a blocker — `STATE.md` session 11 section, or actual legal counsel for the flagged open items
 
 Full pass, no partial items — unlike gtm-agent's session, nothing here was blocked on an external account, because a documentation module has no external account dependency by nature.
@@ -64,4 +64,4 @@ The template asked: does the 90–120 min / 6-phase structure make sense for a m
 ## Next steps
 
 - `session-template.md` updated in this pass: phase 3 gets an explicit "N/A for doc-only modules" note instead of relying on the reader to infer it; phase 4's description now names "trace a scenario through the docs" as the non-CLI substitute, not just "collapse 3–4"; phase 6 checklist reworded to be shape-neutral; a duration note added for doc-only modules (~60–80 min, not 90–120).
-- Two real-module runs now done (gtm-agent = CLI-shaped, compliance-layer = docs-only). Per the template's own threshold (≥2–3 runs across different shapes before Etap 2 starts), one more run against a third shape (e.g. an infra/RAG-pipeline module once one has real material, or office-agent once it has code) would be worth doing before treating the template as stable enough for Etap 2.
+- Two real-module runs now done (gtm-agent = CLI-shaped, compliance-layer = docs-only). Per the template's own threshold (≥2–3 runs across different shapes before Stage 2 starts), one more run against a third shape (e.g. an infra/RAG-pipeline module once one has real material, or office-agent once it has code) would be worth doing before treating the template as stable enough for Stage 2.
